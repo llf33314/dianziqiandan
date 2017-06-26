@@ -1,0 +1,218 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>electron</groupId>
+  <artifactId>electron</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  
+   <properties>
+  	<project>utf-8</project>
+  	<!-- spring版本号 -->
+	<spring.version>4.2.4.RELEASE</spring.version>
+	<!-- mybatis版本号 -->		
+	<mybatis.version>3.2.8</mybatis.version>
+	<!-- mysql版本号 -->
+	<mysql.jdbc.version>5.1.21</mysql.jdbc.version>
+	
+  	<spring.version>4.1.6.RELEASE</spring.version>
+  	<poi.version>3.16-beta1</poi.version>
+  </properties>
+  <dependencies>
+   
+   <!-- 各种jar包的依赖 -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+   
+   
+   
+<!--   spring相关jar -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-core</artifactId>
+		    <version>${spring.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+<!-- Mybatis相关jar -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis</artifactId>
+		    <version>${mybatis.version}</version>
+		</dependency>
+		
+<!--mybatis与spring相结合的jar -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis-spring</artifactId>
+		    <version>1.2.4</version>
+		</dependency>
+		
+<!--druid数据库连接池 jar -->
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>druid</artifactId>
+		    <version>1.0.17</version>
+		</dependency>
+		
+<!-- 		junit相关jar包 -->
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>4.12</version>
+		</dependency>
+		
+<!--   json相关jar -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.1.26</version>
+		</dependency>	
+		
+<!-- jstl相关jar -->
+		<dependency>
+		    <groupId>jstl</groupId>
+		    <artifactId>jstl</artifactId>
+		    <version>1.2</version>
+		</dependency>
+<!-- jackson相关jar包：支持@ResponseBody注解直接将对象转换为json字符串传到前台 -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.4.3</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.4.3</version>
+		</dependency>		
+	  	<dependency>
+	  		<groupId>org.aspectj</groupId>
+	  		<artifactId>aspectjweaver</artifactId>
+	  		<version>1.8.8</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>javax.servlet</groupId>
+	  		<artifactId>servlet-api</artifactId>
+	  		<version>3.0-alpha-1</version>
+	  	</dependency>
+	  	<dependency>
+	  		<groupId>log4j</groupId>
+	  		<artifactId>log4j</artifactId>
+	  		<version>1.2.17</version>
+	  	</dependency>
+	  	
+<!-- 公共资源包 -->
+	    <dependency>  
+	        <groupId>commons-logging</groupId>  
+	        <artifactId>commons-logging</artifactId>  
+	        <version>1.2</version>  
+	    </dependency>  
+	    <dependency>  
+	        <groupId>commons-lang</groupId>  
+	        <artifactId>commons-lang</artifactId>  
+	        <version>2.6</version>  
+	    </dependency>  
+	    <dependency>  
+	        <groupId>org.apache.commons</groupId>  
+	        <artifactId>commons-collections4</artifactId>  
+	        <version>4.0</version>  
+	    </dependency>  
+	    <dependency>  
+	        <groupId>commons-beanutils</groupId>  
+	        <artifactId>commons-beanutils</artifactId>  
+	        <version>1.8.3</version>  
+	    </dependency> 
+	    <dependency>  
+	        <groupId>commons-dbcp</groupId>  
+	        <artifactId>commons-dbcp</artifactId>  
+	        <version>1.4</version>  
+	    </dependency>  
+	  	<dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.7</version>
+		</dependency>
+		<dependency>
+		  <groupId>commons-net</groupId>
+		  <artifactId>commons-net</artifactId>
+		  <version>2.0</version>
+		</dependency>
+<!-- 二维码 --> 
+	<dependency>
+	    <groupId>com.google.zxing</groupId>
+	    <artifactId>core</artifactId>
+	    <version>3.1.0</version>
+	</dependency>
+		
+<!-- 文件上传 --> 
+	    <dependency>  
+	        <groupId>commons-fileupload</groupId>  
+	        <artifactId>commons-fileupload</artifactId>  
+	        <version>1.3.1</version>  
+	    </dependency>
+	    <dependency>
+	        <groupId>commons-io</groupId>
+	        <artifactId>commons-io</artifactId>
+	        <version>2.4</version>
+	    </dependency>
+
+ <!-- json -->
+    	<dependency>
+	        <groupId>com.google.code.gson</groupId>
+	        <artifactId>gson</artifactId>
+	        <version>2.2.4</version>
+	  	</dependency>
+	  	
+<!-- mysql数据库-->
+    <dependency>
+    	<groupId>mysql</groupId>
+    	<artifactId>mysql-connector-java</artifactId>
+    	<version>${mysql.jdbc.version}</version>
+    </dependency>
+    
+  </dependencies>  
+  
+</project>

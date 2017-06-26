@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gt.mapper.TElectronMainMapper" >
+  <resultMap id="BaseResultMap" type="com.gt.pojo.TElectronMain" >
+    <id column="t_id" property="tId" jdbcType="INTEGER" />
+    <result column="t_name" property="tName" jdbcType="VARCHAR" />
+    <result column="t_number" property="tNumber" jdbcType="VARCHAR" />
+    <result column="t_business_number" property="tBusinessNumber" jdbcType="VARCHAR" />
+    <result column="t_site" property="tSite" jdbcType="VARCHAR" />
+    <result column="t_project" property="tProject" jdbcType="VARCHAR" />
+    <result column="t_content" property="tContent" jdbcType="VARCHAR" />
+    <result column="t_manager" property="tManager" jdbcType="VARCHAR" />
+    <result column="t_phone" property="tPhone" jdbcType="VARCHAR" />
+    <result column="t_service" property="tService" jdbcType="VARCHAR" />
+    <result column="t_identity_card" property="tIdentityCard" jdbcType="VARCHAR" />
+    <result column="t_identity_card_two" property="tIdentityCard2" jdbcType="VARCHAR" />
+    <result column="t_business" property="tBusiness" jdbcType="VARCHAR" />
+    <result column="t_sign" property="tSign" jdbcType="VARCHAR" />
+    <result column="t_agreement" property="tAgreement" jdbcType="INTEGER" />
+    <result column="t_delete" property="tDelete" jdbcType="INTEGER" />
+    <result column="t_show" property="tShow" jdbcType="INTEGER" />
+    <result column="t_register_id" property="tRegisterId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    t_id, t_name, t_number, t_business_number, t_site, t_project, t_content, t_manager, 
+    t_phone, t_service, t_identity_card, t_identity_card_two, t_business, t_sign, t_agreement, 
+    t_delete, t_show, t_register_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.gt.pojo.TElectronMainExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_electron_main
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <select id="pageList" resultMap="BaseResultMap" parameterType="Map" >
+  	select 
+    <include refid="Base_Column_List" />
+	from t_electron_main
+	where 1= 1
+    <if test="tAgreement != null">
+	  and t_agreement = #{tAgreement,jdbcType=INTEGER}
+    </if>
+     <if test="tDelete != null">
+	  and  t_delete = #{tDelete,jdbcType=INTEGER}
+    </if>
+    <if test="tRegisterId != null">
+	  and  t_register_id = #{tRegisterId,jdbcType=INTEGER}
+    </if>
+   	GROUP BY t_id DESC
+    limit #{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+  </select>
+  <select id="getTotalCountByMap" resultType="Integer" parameterType="Map" >
+    select 
+    count(t_id)
+    from t_electron_main
+    where 1= 1
+    <if test="tAgreement != null">
+	  and t_agreement = #{tAgreement,jdbcType=INTEGER}
+    </if>
+     <if test="tDelete != null">
+	  and  t_delete = #{tDelete,jdbcType=INTEGER}
+    </if>
+    <if test="tRegisterId != null">
+	  and  t_register_id = #{tRegisterId,jdbcType=INTEGER}
+    </if>
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_electron_main
+    where t_id = #{tId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_electron_main
+    where t_id = #{tId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.gt.pojo.TElectronMainExample" >
+    delete from t_electron_main
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.gt.pojo.TElectronMain" >
+    insert into t_electron_main (t_id, t_name, t_number, 
+      t_business_number, t_site, t_project, 
+      t_content, t_manager, t_phone, 
+      t_service, t_identity_card, t_identity_card_two, 
+      t_business, t_sign, t_show, t_register_id
+      )
+    values (#{tId,jdbcType=INTEGER}, #{tName,jdbcType=VARCHAR}, #{tNumber,jdbcType=VARCHAR}, 
+      #{tBusinessNumber,jdbcType=VARCHAR}, #{tSite,jdbcType=VARCHAR}, #{tProject,jdbcType=VARCHAR}, 
+      #{tContent,jdbcType=VARCHAR}, #{tManager,jdbcType=VARCHAR}, #{tPhone,jdbcType=VARCHAR}, 
+      #{tService,jdbcType=VARCHAR}, #{tIdentityCard,jdbcType=VARCHAR}, #{tIdentityCard2,jdbcType=VARCHAR}, 
+      #{tBusiness,jdbcType=VARCHAR}, #{tSign,jdbcType=VARCHAR}, #{tShow,jdbcType=INTEGER}, 
+      #{tRegisterId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gt.pojo.TElectronMain" >
+    insert into t_electron_main
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tId != null" >
+        t_id,
+      </if>
+      <if test="tName != null" >
+        t_name,
+      </if>
+      <if test="tNumber != null" >
+        t_number,
+      </if>
+      <if test="tBusinessNumber != null" >
+        t_business_number,
+      </if>
+      <if test="tSite != null" >
+        t_site,
+      </if>
+      <if test="tProject != null" >
+        t_project,
+      </if>
+      <if test="tContent != null" >
+        t_content,
+      </if>
+      <if test="tManager != null" >
+        t_manager,
+      </if>
+      <if test="tPhone != null" >
+        t_phone,
+      </if>
+      <if test="tService != null" >
+        t_service,
+      </if>
+      <if test="tIdentityCard != null" >
+        t_identity_card,
+      </if>
+      <if test="tIdentityCard2 != null" >
+        t_identity_card_two,
+      </if>
+      <if test="tBusiness != null" >
+        t_business,
+      </if>
+      <if test="tSign != null" >
+        t_sign,
+      </if>
+      <if test="tAgreement != null" >
+        t_agreement,
+      </if>
+      <if test="tDelete != null" >
+        t_delete,
+      </if>
+      <if test="tShow != null" >
+        t_show,
+      </if>
+      <if test="tRegisterId != null" >
+        t_register_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tId != null" >
+        #{tId,jdbcType=INTEGER},
+      </if>
+      <if test="tName != null" >
+        #{tName,jdbcType=VARCHAR},
+      </if>
+      <if test="tNumber != null" >
+        #{tNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tBusinessNumber != null" >
+        #{tBusinessNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tSite != null" >
+        #{tSite,jdbcType=VARCHAR},
+      </if>
+      <if test="tProject != null" >
+        #{tProject,jdbcType=VARCHAR},
+      </if>
+      <if test="tContent != null" >
+        #{tContent,jdbcType=VARCHAR},
+      </if>
+      <if test="tManager != null" >
+        #{tManager,jdbcType=VARCHAR},
+      </if>
+      <if test="tPhone != null" >
+        #{tPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="tService != null" >
+        #{tService,jdbcType=VARCHAR},
+      </if>
+      <if test="tIdentityCard != null" >
+        #{tIdentityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="tIdentityCard2 != null" >
+        #{tIdentityCard2,jdbcType=VARCHAR},
+      </if>
+      <if test="tBusiness != null" >
+        #{tBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="tSign != null" >
+        #{tSign,jdbcType=VARCHAR},
+      </if>
+      <if test="tAgreement != null" >
+        #{tAgreement,jdbcType=INTEGER},
+      </if>
+      <if test="tDelete != null" >
+        #{tDelete,jdbcType=INTEGER},
+      </if>
+      <if test="tShow != null" >
+        #{tShow,jdbcType=INTEGER},
+      </if>
+      <if test="tRegisterId != null" >
+        #{tRegisterId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.gt.pojo.TElectronMainExample" resultType="java.lang.Integer" >
+    select count(*) from t_electron_main
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_electron_main
+    <set >
+      <if test="record.tId != null" >
+        t_id = #{record.tId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tName != null" >
+        t_name = #{record.tName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tNumber != null" >
+        t_number = #{record.tNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tBusinessNumber != null" >
+        t_business_number = #{record.tBusinessNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tSite != null" >
+        t_site = #{record.tSite,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tProject != null" >
+        t_project = #{record.tProject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tContent != null" >
+        t_content = #{record.tContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tManager != null" >
+        t_manager = #{record.tManager,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPhone != null" >
+        t_phone = #{record.tPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tService != null" >
+        t_service = #{record.tService,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tIdentityCard != null" >
+        t_identity_card = #{record.tIdentityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tIdentityCard2 != null" >
+        t_identity_card_two = #{record.tIdentityCard2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tBusiness != null" >
+        t_business = #{record.tBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tSign != null" >
+        t_sign = #{record.tSign,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tAgreement != null" >
+        t_agreement = #{record.tAgreement,jdbcType=INTEGER},
+      </if>
+      <if test="record.tDelete != null" >
+        t_delete = #{record.tDelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.tShow != null" >
+        t_show = #{record.tShow,jdbcType=INTEGER},
+      </if>
+      <if test="record.tRegisterId != null" >
+        t_register_id = #{record.tRegisterId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  <update id="updateByBackfillKeySelective" parameterType="com.gt.pojo.TElectronMain" >
+    update t_electron_main
+    <set >
+     t_agreement = #{tAgreement,jdbcType=INTEGER},
+     t_identity_card = #{tIdentityCard,jdbcType=VARCHAR},
+     t_identity_card_two = #{tIdentityCard2,jdbcType=VARCHAR},
+     t_business = #{tBusiness,jdbcType=VARCHAR},
+     t_sign = #{tSign,jdbcType=VARCHAR}
+    </set>
+    where t_id = #{tId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByExample" parameterType="map" >
+    update t_electron_main
+    set t_id = #{record.tId,jdbcType=INTEGER},
+      t_name = #{record.tName,jdbcType=VARCHAR},
+      t_number = #{record.tNumber,jdbcType=VARCHAR},
+      t_business_number = #{record.tBusinessNumber,jdbcType=VARCHAR},
+      t_site = #{record.tSite,jdbcType=VARCHAR},
+      t_project = #{record.tProject,jdbcType=VARCHAR},
+      t_content = #{record.tContent,jdbcType=VARCHAR},
+      t_manager = #{record.tManager,jdbcType=VARCHAR},
+      t_phone = #{record.tPhone,jdbcType=VARCHAR},
+      t_service = #{record.tService,jdbcType=VARCHAR},
+      t_identity_card = #{record.tIdentityCard,jdbcType=VARCHAR},
+      t_identity_card_two = #{record.tIdentityCard2,jdbcType=VARCHAR},
+      t_business = #{record.tBusiness,jdbcType=VARCHAR},
+      t_sign = #{record.tSign,jdbcType=VARCHAR},
+      t_agreement = #{record.tAgreement,jdbcType=INTEGER},
+      t_delete = #{record.tDelete,jdbcType=INTEGER},
+      t_show = #{record.tShow,jdbcType=INTEGER},
+      t_register_id = #{record.tRegisterId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gt.pojo.TElectronMain" >
+    update t_electron_main
+    <set >
+      <if test="tName != null" >
+        t_name = #{tName,jdbcType=VARCHAR},
+      </if>
+      <if test="tNumber != null" >
+        t_number = #{tNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tBusinessNumber != null" >
+        t_business_number = #{tBusinessNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tSite != null" >
+        t_site = #{tSite,jdbcType=VARCHAR},
+      </if>
+      <if test="tProject != null" >
+        t_project = #{tProject,jdbcType=VARCHAR},
+      </if>
+      <if test="tContent != null" >
+        t_content = #{tContent,jdbcType=VARCHAR},
+      </if>
+      <if test="tManager != null" >
+        t_manager = #{tManager,jdbcType=VARCHAR},
+      </if>
+      <if test="tPhone != null" >
+        t_phone = #{tPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="tService != null" >
+        t_service = #{tService,jdbcType=VARCHAR},
+      </if>
+      <if test="tIdentityCard != null" >
+        t_identity_card = #{tIdentityCard,jdbcType=VARCHAR},
+      </if>
+      <if test="tIdentityCard2 != null" >
+        t_identity_card_two = #{tIdentityCard2,jdbcType=VARCHAR},
+      </if>
+      <if test="tBusiness != null" >
+        t_business = #{tBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="tSign != null" >
+        t_sign = #{tSign,jdbcType=VARCHAR},
+      </if>
+      <if test="tAgreement != null" >
+        t_agreement = #{tAgreement,jdbcType=INTEGER},
+      </if>
+      <if test="tShow != null" >
+        t_show = #{tShow,jdbcType=INTEGER},
+      </if>
+    </set>
+    where t_id = #{tId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gt.pojo.TElectronMain" >
+    update t_electron_main
+    set t_name = #{tName,jdbcType=VARCHAR},
+      t_number = #{tNumber,jdbcType=VARCHAR},
+      t_business_number = #{tBusinessNumber,jdbcType=VARCHAR},
+      t_site = #{tSite,jdbcType=VARCHAR},
+      t_project = #{tProject,jdbcType=VARCHAR},
+      t_content = #{tContent,jdbcType=VARCHAR},
+      t_manager = #{tManager,jdbcType=VARCHAR},
+      t_phone = #{tPhone,jdbcType=VARCHAR},
+      t_service = #{tService,jdbcType=VARCHAR},
+      t_identity_card = #{tIdentityCard,jdbcType=VARCHAR},
+      t_identity_card_two = #{tIdentityCard2,jdbcType=VARCHAR},
+      t_business = #{tBusiness,jdbcType=VARCHAR},
+      t_sign = #{tSign,jdbcType=VARCHAR},
+      t_agreement = #{tAgreement,jdbcType=INTEGER},
+      t_delete = #{tDelete,jdbcType=INTEGER},
+      t_show = #{tShow,jdbcType=INTEGER},
+      t_register_id = #{tRegisterId,jdbcType=INTEGER}
+    where t_id = #{tId,jdbcType=INTEGER}
+  </update>
+</mapper>
